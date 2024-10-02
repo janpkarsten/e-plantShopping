@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import './navigbar.css'
 
 
 const NavigBar = ({onViewCartClick, onContinueShopping}) => {
@@ -13,7 +14,7 @@ const NavigBar = ({onViewCartClick, onContinueShopping}) => {
     display: 'flex',
     justifyContent: 'space-between',
     alignIems: 'center',
-    fontSize: '20px',   
+    fontSize: '20px',
    }
    const styleObjUl={
     display: 'flex',

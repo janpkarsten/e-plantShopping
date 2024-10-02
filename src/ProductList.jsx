@@ -3,17 +3,9 @@ import './ProductList.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem } from './CartSlice';
 
-function ProductList({ onViewCartClick }) {
-    const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+function ProductList() {
     const [addedToCart, setAddedToCart] = useState({});
     const dispatch = useDispatch();
-    const cartQuantity = useSelector(state => state.cart.items.reduce((total, item) => total + item.quantity, 0))
-
-    /* const handlePlantsClick = (e) => {
-        e.preventDefault();
-        setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
-        setShowCart(false); // Hide the cart when navigating to About Us
-    }; */
 
     const handleAddToCart = (product) => {
         if (product) {
@@ -230,53 +222,30 @@ function ProductList({ onViewCartClick }) {
             ]
         }
     ];
-   const styleObj={
-    backgroundColor: '#4CAF50',
-    color: '#fff!important',
-    padding: '15px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignIems: 'center',
-    fontSize: '20px',   
-   }
-   const styleObjUl={
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '1100px',
-   }
-   const styleA={
-    color: 'white',
-    fontSize: '30px',
-    textDecoration: 'none',
-   }
    
     return (
-        <div>
-            <div className="product-grid">
-                {plantsArray.map((category, index) => (
-                    <div key={index}>
-                        <h1><div>{category.category}</div></h1>
-                        <div className='product-list'>
-                            {category.plants.map((plant, plantIndex) => (
-                                <div className='product-card' key={plantIndex}>
-                                    <img className="product-image" src={plant.image} alt={plant.name} />
-                                    <div className='product-title'>{plant.name}</div>
-                                    <div className='product-price'>{plant.cost}</div>
-                                    <div className='product-description'>{plant.description}</div>
-                                    <button className={`product-button ${addedToCart[plant.name] ? 'added-to-cart' : ''}`} 
-                                        onClick={() => handleAddToCart(plant)}
-                                        disabled={addedToCart[plant.name]}>
-                                        {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'} 
-                                    </button>
-                                </div>
-                                ))
-                            }
-                        </div>
-                    </div> 
-                    ))
-                }
-            </div>
+        <div className="product-grid">
+            {plantsArray.map((category, index) => (
+                <div key={index}>
+                    <h2 className="plantname_heading"><div>{category.category}</div></h2>
+                    <div className='product-list'>
+                        {category.plants.map((plant, plantIndex) => (
+                            <div className='product-card' key={plantIndex}>
+                                <img className="product-image" src={plant.image} alt={plant.name} />
+                                <h3 className='product-title'>{plant.name}</h3>
+                                <p className='product-price'>{plant.cost}</p>
+                                <p className='product-description'>{plant.description}</p>
+                                <button 
+                                    className={`product-button ${addedToCart[plant.name] ? 'added-to-cart' : ''}`} 
+                                    onClick={() => handleAddToCart(plant)}
+                                    disabled={addedToCart[plant.name]}>
+                                    {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'} 
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div> 
+            ))}
         </div>
     );
 }
